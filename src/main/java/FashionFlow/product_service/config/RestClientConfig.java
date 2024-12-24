@@ -12,13 +12,14 @@ import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 public class RestClientConfig {
     @Value("${inventory.url}")
     private String inventoryServiceUrl;
+
     @Bean
-    public inventoryClient inventoryClient(){
-        RestClient restClient=RestClient.builder()
+    public inventoryClient inventoryClient() {
+        RestClient restClient = RestClient.builder()
                 .baseUrl(inventoryServiceUrl)
                 .build();
-        var restClientAdapter= RestClientAdapter.create(restClient);
-        var httpServiceProxyFactory= HttpServiceProxyFactory.builderFor(restClientAdapter).build();
+        var restClientAdapter = RestClientAdapter.create(restClient);
+        var httpServiceProxyFactory = HttpServiceProxyFactory.builderFor(restClientAdapter).build();
         return httpServiceProxyFactory.createClient(inventoryClient.class);
     }
 }

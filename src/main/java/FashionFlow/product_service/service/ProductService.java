@@ -28,7 +28,6 @@ public class ProductService {
                 .build();
         productRepository.save(product);
         inventoryClient.addToStock(productRequest.skuCode());
-        log.info("Product created successfully");
         return new ProductResponse(product.getId(), product.getName(), product.getDescription(),
                 product.getSkuCode(),
                 product.getPrice());
